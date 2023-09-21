@@ -1,0 +1,41 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>landing</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo.png" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo_app.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <h6 *ngIf="getType=='unfinished'">
+        Bem-vindo de volta!<br><br>
+        Identificamos que na sua ultima visita não foi possível concluir o preenchimento do questionário. Não se preocupe, nós salvamos tudo!
+        Você poderá continuar de onde parou.
+      </h6>
+      <h6 *ngIf="getType=='monitoring'">
+        Bem-vindo de volta!<br><br>
+        Entramos na fase de monitoramento, nesta fase disponibilizaremos um questionário simplificado para que possamos identificar eventuais vulnerabilidades na proteção aos profissionais de saúde.
+      </h6>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar position="bottom"  color="light" >
+    <ion-button fill="clear" color="primary" slot="end" (click)="onClick()">
+      Continuar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

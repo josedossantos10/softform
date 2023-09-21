@@ -1,0 +1,76 @@
+<ion-content class="ion-padding " #content [scrollEvents]="true" (ionChange)="updateValidators()"
+  (ionScroll)="checkScrollBottom()">
+  <h3>Formulário Inicial</h3>
+  <br>
+  <ion-grid fixed>
+    <form [formGroup]="networkingForm">
+
+      <ion-row>
+        <ion-label class="ion-text-wrap ion-text-justify">
+          (A) Pergunta 1?
+        </ion-label>
+        <ion-input type='number' formControlName="a" placeholder="Quantidade"> </ion-input>
+      </ion-row>
+      <ion-row *ngIf="a.invalid && (a.dirty || a.touched)">
+        <ion-text *ngIf="a.errors.required" color="danger">
+          Campo obrigatório
+        </ion-text>
+      </ion-row>
+      <br>
+
+      <ion-row>
+        <ion-label class="ion-text-wrap ion-text-justify">
+          (B) Pergunta nível 2?
+        </ion-label>
+        <ion-input type='number' formControlName="b" placeholder="Quantidade"> </ion-input>
+      </ion-row>
+      <ion-row *ngIf="b.invalid && (b.dirty || b.touched)">
+        <ion-text *ngIf="b.errors.required" color="danger">
+          Campo obrigatório
+        </ion-text>
+        <ion-text *ngIf="b.errors.max" color="danger">
+          O valor não pode ser maior que a resposta da pergunta anterior ( {{b.errors.max.max}} )
+        </ion-text>
+      </ion-row>
+      <br>
+
+      <ion-row>
+        <ion-label class="ion-text-wrap ion-text-justify">
+          (C) Pergunta nível 3?
+        </ion-label>
+        <ion-input type='number' formControlName="c" placeholder="Quantidade"> </ion-input>
+      </ion-row>
+      <ion-row *ngIf="c.invalid && (c.dirty || c.touched)">
+        <ion-text *ngIf="c.errors.required" color="danger">
+          Campo obrigatório
+        </ion-text>
+        <ion-text *ngIf="c.errors.max" color="danger">
+          O valor não pode ser maior que a resposta da pergunta anterior ({{c.errors.max.max}})
+        </ion-text>
+      </ion-row>
+      <br>
+
+      <ion-row>
+        <ion-label class="ion-text-wrap ion-text-justify">
+          (D) Outra pergunta?
+        </ion-label>
+        <ion-input type='number' formControlName="d" placeholder="Quantidade"> </ion-input>
+      </ion-row>
+      <ion-row *ngIf="d.invalid && (d.dirty || d.touched)">
+        <ion-text *ngIf="d.errors.required" color="danger">
+          Campo obrigatório
+        </ion-text>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button fill="clear" color="primary" slot="end" (click)="onSubmit()">
+      Próximo
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,46 @@
+<ion-content class="ion-padding">
+  <ion-grid fixed class="ion-text-center">
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/logo.png" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/logo_app.png" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h1>
+          Ops... algo deu errado!
+        </h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h5>Ocorreu um erro ao tentar se conectar ao Servidor.</h5>
+        <h6>Verifique o status da sua conexão com a internet e tente novamente.</h6>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button
+      fill="clear"
+      color="primary"
+      slot="end"
+      (click)="reconect()"
+    >
+      Tentar Novamente
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+

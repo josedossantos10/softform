@@ -1,0 +1,105 @@
+<ion-content class="ion-padding">
+  <ion-text class="ion-text-center">
+    <h4>Gerenciador de usuários</h4>
+  </ion-text>
+  <ion-item-group *ngIf="admin" style="text-align: right;"  lines="none">
+    <h6>administrador: {{admin.id}}</h6>
+    <h6>centro: {{admin.centerName ? admin.centerName : admin.centerId}}</h6>
+  </ion-item-group>
+
+<ion-item style="padding:20px">
+  <ion-input type="text"  [(ngModel)]="entradaID" (ionChange) = "canSearch()" style="font-size: larger;" maxlength="9" autocapitalize="characters" placeholder="Insira o código do usuário"> </ion-input>
+
+  <ion-button (click)="search()" [disabled]="entradaID.length<8">
+    <ion-icon name="search-outline"></ion-icon>
+  </ion-button>
+</ion-item>
+<br><br>
+
+<ion-grid class="ion-align-items-start" *ngIf="user else elseBlock">
+  <ion-item-group>
+
+    <ion-row>
+      <ion-col>
+        <h6>Código de Identificação</h6>
+      </ion-col> <ion-col>
+        <h6>{{user.id.toUpperCase()}}</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h6>Sexo</h6>
+      </ion-col> <ion-col>
+        <h6>{{user.gender.toUpperCase()}}</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h6>Idade</h6>
+      </ion-col> <ion-col>
+        <h6>{{user.age}}</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h6>Profissão</h6>
+      </ion-col> <ion-col>
+        <h6>{{user.occupation.toUpperCase()}}</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h6>Data da última resposta</h6>
+      </ion-col> <ion-col>
+        <h6>{{getData(user.finishedAt)}}</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <h6>Status</h6>
+          <ion-toggle  [(ngModel)]="user.active"></ion-toggle>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <h6>{{user.active?'Ativo':'Desativo'}}</h6>
+      </ion-col>
+    </ion-row>
+
+  </ion-item-group>
+</ion-grid>
+
+<ng-template #elseBlock> <h6 style="text-align: center;">{{mensagem}}</h6></ng-template>
+
+</ion-content>
+
+
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button
+    fill="clear"
+    color="primary"
+    slot="start"
+    [routerLink]="['/dashboard']"
+  >
+  <ion-icon name="arrow-back-outline"></ion-icon>    Voltar
+  </ion-button>
+
+  <ion-button
+  fill="clear"
+  color="primary"
+  slot="end"
+  (click)="save()"
+  [disabled]="!user"
+>
+<ion-icon name="save-outline"></ion-icon>
+  Salvar
+</ion-button>
+  </ion-toolbar>
+</ion-footer>

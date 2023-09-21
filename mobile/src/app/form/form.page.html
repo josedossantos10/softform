@@ -1,0 +1,30 @@
+<ion-content class="ion-no-border ion-padding" #content  [scrollEvents]="true" (ionScroll)="checkScrollBottom()">
+  <form [formGroup]="form">
+    <ion-slides #formSlider pager [options]="sliderConfig" (ionSlideWillChange)="handleSlideChange()">
+      <ion-slide *ngFor="let formQuestion of formQuestions" class="swiper-lock">
+        <app-form-question
+          (btnEmitter)="hasAnswered()"
+          [form]="form"
+          [question]="formQuestion"
+          [history]="history"
+        ></app-form-question>
+      </ion-slide>
+    </ion-slides>
+  </form>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar position="bottom"  color="light" >
+    <ion-item lines="none" slot="end">
+      <ion-spinner [hidden]="!getLoading" color="primary"></ion-spinner>
+      <ion-button id="next-button" type="submit" fill="clear" [disabled]="!formQuestions" color="primary" (click)="slideNext()">
+        {{ getButtonLabel }}
+      </ion-button>
+    </ion-item>
+    <!-- <ion-item lines="none" slot="start">
+      <ion-button id="back-button" type="submit" fill="clear" [disabled]="navigationHistory.length===0" color="primary" (click)="slideBack()">
+        Voltar
+      </ion-button>
+    </ion-item> -->
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,65 @@
+<ion-content class="ion-padding">
+  <ion-grid fixed class="ion-text-center">
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/logo.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="getLink">
+      <ion-col>
+        <h1 style="margin-top:0px">
+          Obrigado pela colaboração!
+        </h1>
+        <h6>
+          Vamos continuar...
+        </h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row [hidden]="!getLink">
+      <ion-col>
+        <h1 style="margin-top:0px">
+          Sua colaboração é muito importante para nós!
+        </h1>
+        <h6 style="font-size: 10pt;">
+
+          Compartilhe o link para seus amigos.
+
+          
+        </h6>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item-divider style="background-color:lightgray;" color='light' [hidden]="!getLink">
+        <ion-input type="url" style="font-size: 8pt;" readonly="true" color="dark">
+          {{getLink}}
+        </ion-input>
+      </ion-item-divider>
+    </ion-row>
+    <br>
+    <ion-row [hidden]="!getLink">
+      <ion-button fill="solid" color="primary" type="button" (click)="copyUserLink()">
+        <ion-icon name="copy-outline"></ion-icon>
+        Copiar Link
+      </ion-button>
+
+      <ion-button fill="solid" color="primary" type="button" (click)="shareUserLink()">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        Compartilhar Link
+      </ion-button>
+    </ion-row>
+
+    <!--
+    <ion-row *ngIf="showFinishButton">
+         <ion-button
+        fill="solid"
+        color="primary"
+        type="button"
+        (click)="redirectUserToCorrespondingCenter()"
+      >
+        Concluir Pesquisa
+      </ion-button>
+    </ion-row>
+  -->
+  </ion-grid>
+</ion-content>

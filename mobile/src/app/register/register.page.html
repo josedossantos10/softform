@@ -1,0 +1,88 @@
+<ion-header class="ion-text-center ion-padding ion-no-border">
+  
+    <h3>Agora fale um pouco de você e da sua atuação</h3>
+  
+</ion-header>
+
+<ion-content class="ion-padding ion-no-border ion-text-center" fullscreen>
+  <ion-grid fixed>
+    <form [formGroup]="registerForm">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Profissional de saúde</ion-label>
+            <ion-select 
+              color="tertiary" 
+              interface="action-sheet" 
+              cancelText="Cancelar" 
+              formControlName="occupation" 
+              required
+            >
+              <ion-select-option value="medico">Médico</ion-select-option>
+              <ion-select-option value="enfermeiro">Enfermeiro</ion-select-option>
+              <ion-select-option value="tecnico">Técnico de enfermagem</ion-select-option>
+              <ion-select-option value="fisioterapeuta">Fisioterapeuta</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Sexo</ion-label>
+            <ion-select 
+              color="tertiary" 
+              interface="action-sheet" 
+              cancelText="Cancelar" 
+              formControlName="gender" 
+              required
+            >
+              <ion-select-option value="masculino">Masculino</ion-select-option>
+              <ion-select-option value="feminino">Feminino</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Raça/Cor</ion-label>
+            <ion-select 
+              color="tertiary" 
+              interface="action-sheet" 
+              cancelText="Cancelar" 
+              formControlName="ethnicity" 
+              required
+            >
+              <ion-select-option value="branca">Branca</ion-select-option>
+              <ion-select-option value="preta">Preta</ion-select-option>
+              <ion-select-option value="amarela">Amarela</ion-select-option>
+              <ion-select-option value="parda">Parda</ion-select-option>
+              <ion-select-option value="indigena">Indígena</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="tertiary" position="floating">Idade</ion-label>
+            <ion-input type="number" formControlName="age" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+  
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+	<ion-toolbar color="light" position="bottom">
+    <ion-button fill="clear" color="primary" slot="end" [disabled]="!registerForm.valid" (click)="onSubmit()">
+    Próximo
+    </ion-button>
+	</ion-toolbar>
+</ion-footer>

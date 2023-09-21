@@ -1,0 +1,46 @@
+<ion-content class="ion-padding">
+  <ion-grid fixed class="ion-text-center">
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/logo.png" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <img src="../../assets/logo_app.png" />
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="userAdminForm" >
+          <ion-item>
+            <ion-label color="tertiary" position="floating">Usuário</ion-label>
+            <ion-input type="text" formControlName="id"  required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="tertiary" position="floating">Senha</ion-label>
+            <ion-input type="password" formControlName="password"  required></ion-input>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button
+    fill="clear"
+    color="primary"
+    slot="end"
+    [disabled]="!userAdminForm.valid"
+    (click)="onSubmit()"
+  >
+  <ion-icon name="lock-closed-outline"></ion-icon>
+    Acessar
+  </ion-button>
+  </ion-toolbar>
+</ion-footer>

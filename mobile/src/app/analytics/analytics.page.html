@@ -1,0 +1,86 @@
+<ion-content class="ion-text-center ion-padding">
+  <ion-text>
+    <h4>Visualizar informações de:</h4>
+  </ion-text>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let center of centersCheckbox">
+        <ion-item>
+          <ion-label>{{center.centerName}}</ion-label>
+          <ion-checkbox
+            color="secondary"
+            slot="end"
+            [(ngModel)]="center.isChecked"
+            [checked]="center.isChecked"
+          >
+          </ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-padding">
+      <ion-button
+        (click)="getCentersAnalytics()"
+        [disabled]="!hasAnyCenterCheckboxChecked()"
+      >
+        <ion-spinner *ngIf="loading; else searchText" name="crescent"></ion-spinner>
+
+        <ng-template #searchText><p>Pesquisar</p></ng-template>
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid
+    *ngIf="!!metrics"
+    class="ion-padding ion-align-items-center ion-justify-content-center"
+  >
+    <ion-row>
+      <ion-text>
+        <h4>Informações sobre participantes nos centros escolhidos:</h4>
+      </ion-text>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <p>Participantes ativos</p>
+          <p>{{metrics.totalParticipants}}</p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col>
+        <ion-text>
+          <p>Total de monitoramentos completados:</p>
+          <p>{{metrics.totalMonitoring}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <p>Basal pendente:</p>
+          <p>{{metrics.pendingRisk}}</p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col>
+        <ion-text>
+          <p>Monitoramento pendente:</p>
+          <p>{{metrics.pendingMonitoring}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button fill="clear" color="primary" slot="start" [routerLink]="['/dashboard']">
+      <ion-icon name="arrow-back"></ion-icon>
+      Voltar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

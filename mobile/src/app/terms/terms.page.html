@@ -1,0 +1,51 @@
+
+<ion-content class="ion-padding ion-text-justify">
+  <ion-grid fixed class="ion-text-center">
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo_app.png" />
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  <p>
+    Olá,
+    <br>
+Você está iniciando um questionário com base no SoftForm.
+ Solicitamos que você leia
+ <a (click)="openPDF()" >
+ esse arquivo para mais informações,
+</a> e se concordar em participar, responda o questionário.
+
+</p> 
+
+</ion-content>
+
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button
+      id="accept-button"
+      fill="clear"
+      color="primary"
+      slot="start"
+      (click)="openPDF()"
+    >
+    Leia o TCLE
+    </ion-button>
+    <ion-button
+      id="accept-button"
+      fill="clear"
+      color="primary"
+      slot="end"
+      (click)="onSubmit()"
+    >
+    Li e aceito
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

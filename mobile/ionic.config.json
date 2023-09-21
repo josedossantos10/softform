@@ -1,0 +1,7 @@
+{
+  "name": "softform",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,116 @@
+<ion-content class="ion-padding ion-text-center">
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <img src="../../assets/logo_app.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-item-group class="ion-padding">
+    <ion-button
+      fill="solid"
+      color="primary"
+      [routerLink]="['/manager']"
+      expand="block"
+    >
+    <ion-icon name="people-outline"></ion-icon>
+    Gerenciar Usuários
+    </ion-button>
+
+    <ion-button
+      fill="solid"
+      color="primary"
+      (click)="goToAnalyticsPage()"
+      expand="block"
+    >
+    <ion-icon name="analytics-outline"></ion-icon>
+    <p>Visão geral</p>
+  </ion-button>
+
+  </ion-item-group>
+
+  <ion-item-group class="ion-padding">
+    <h6>Exportar dados:</h6>
+
+<!--   <ion-button
+    fill="solid"
+    color="primary"
+    (click)="riskReport()"
+    expand="block"
+    >
+    Avaliação de Risco
+  </ion-button> -->
+
+    <ion-button
+      fill="solid"
+      color="primary"
+      (click)="riskReportProcessed()"
+      expand="block"
+    >
+      <ion-icon name="document-attach-outline"></ion-icon>
+      <p>Avaliação de Risco</p><!-- PRO  -->
+    </ion-button>
+
+    <!--   <ion-button
+    fill="solid"
+    color="primary"
+    (click)="riskLiteReport()"
+    expand="block"
+    >
+    Avaliação de Risco (LITE)
+  </ion-button> -->
+
+    <ion-button
+      fill="solid"
+      color="primary"
+      (click)="mindHealthyReport()"
+      expand="block"
+    >
+      <ion-icon name="document-attach-outline"></ion-icon>
+      <p>Saúde Mental</p>
+    </ion-button>
+
+    <ion-button
+      fill="solid"
+      color="primary"
+      (click)="weeklyReportProcessed()"
+      expand="block"
+    >
+      <ion-icon name="document-attach-outline"></ion-icon>
+      <p>Monitoramento</p>
+    </ion-button>
+
+    <!--  <ion-button
+  fill="solid"
+  color="primary"
+  (click)="weeklyLiteReport()"
+  expand="block"
+  >
+  Monitoramento (LITE)
+</ion-button>
+ -->
+    <ion-button
+      fill="solid"
+      color="primary"
+      (click)="pendingReport()"
+      expand="block"
+    >
+      <ion-icon name="document-attach-outline"></ion-icon>
+      Monitoramento Pendente (> 15d)
+    </ion-button>
+  </ion-item-group>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="light" position="bottom">
+    <ion-button fill="clear" color="primary" slot="start" [routerLink]="['/admin']">
+      <ion-icon name="power-outline"></ion-icon>
+      Sair
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

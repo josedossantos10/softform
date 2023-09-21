@@ -1,0 +1,13 @@
+ion-text p ~ p {
+  margin-top: -12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+ion-row ion-button {
+  min-width: 30%;
+}
+
+ion-button ion-icon {
+  margin-right: 8px;
+}

@@ -1,0 +1,86 @@
+<h3>{{ question.question.split("||",1)[0] }}</h3>
+<h6 *ngIf="question.question.split('||',2)[1]" >{{ question.question.split("||",2)[1] }}</h6>
+<ion-chip *ngIf="question.question.split('||',4)[3]" (click)="accessDetails()" color="primary">
+  <ion-icon name="information-circle-outline" ></ion-icon>
+  <ion-label>{{ question.question.split("||",4)[3]}}</ion-label>
+</ion-chip>
+
+<div [ngSwitch]="question.questionType" [formGroup]="form">
+    <ion-radio-group *ngSwitchCase="'radio'" [formControlName]="question.id" (ionChange)="onChange($event.target.value)">
+      <ion-item *ngFor='let alt of question.alternatives' [disabled]="history.includes(question.id)"  class="ion-text-start">
+        <ion-label class="ion-text-wrap" color="tertiary">{{ alt.text }}</ion-label>
+        <ion-radio [value]="alt.text" required></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  <ion-list *ngSwitchCase="'checkbox'">
+    <ion-item hidden>
+      <ion-input hidden type="text" [(ngModel)]="inputValue" [formControlName]="question.id" required></ion-input>
+    </ion-item>
+    <ion-item *ngFor="let alt of question.alternatives" [disabled]="history.includes(question.id)" class="ion-text-start">
+      <ion-label class="ion-text-wrap" color="tertiary">{{alt.text}}</ion-label>
+      <ion-checkbox [checked]="checkStoredAnswer(alt.text)" (ionChange)="onCheck(alt.text)" required></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'select'">
+    <ion-item hidden>
+      <ion-input hidden type="text" [(ngModel)]="inputValue" [formControlName]="question.id" required></ion-input>
+    </ion-item>
+    <ion-item *ngFor='let alt of question.alternatives' [disabled]="history.includes(question.id)" class="ion-text-start">
+      <ion-label color="tertiary">{{ alt.text }}</ion-label>
+      <ion-select [value]="checkStoredAnswer(alt.text)" color="tertiary" placeholder="Selecione uma opção" interface="action-sheet" cancelText="Cancelar"  (ionChange)="onMultiCheck(alt.text+'::'+$event.target.value)" required>
+        <ion-select-option value="5">Sempre (> 95%)</ion-select-option>
+        <ion-select-option value="4">Maioria das vezes (≥ 50%) </ion-select-option>
+        <ion-select-option value="3">Algumas vezes (< 50%)</ion-select-option>
+        <ion-select-option value="2">Nunca</ion-select-option>
+        <ion-select-option value="1">Não dispõe no serviço</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'dynamic-select'">
+    <ion-item hidden>
+      <ion-input hidden type="text" [(ngModel)]="inputValue" [formControlName]="question.id" required></ion-input>
+    </ion-item>
+      <ion-item *ngFor='let alt of question.alternatives' [disabled]="history.includes(question.id)" class="ion-text-start ion-text-wrap">
+        <ion-label color="tertiary">{{ alt.text.split('||',1)[0] }}</ion-label>
+        <ion-select [value]="checkStoredAnswer(alt.text.split('||',1)[0])" color="tertiary" placeholder="Selecione uma opção" interface="action-sheet" cancelText="Cancelar"  (ionChange)="onSelectCheck(alt.text.split('||',1)[0]+'::'+$event.target.value)" required>
+          <ion-select-option *ngFor='let opt of extractSelectOptions(alt.text); let i = index' value="{{i}}-{{opt}}">{{opt}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'number'" >
+    <ion-item>
+      <ion-label color="tertiary" position="floating">{{ question.question.split("||",3)[2] }}</ion-label>
+      <ion-input type="number" [disabled]="history.includes(question.id)" (ionChange)="onChange($event)" [formControlName]="question.id" required></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'text'">
+    <ion-item>
+      <ion-label color="tertiary" position="floating">{{ question.question.split("||",3)[2] }}</ion-label>
+      <ion-input type="text" [disabled]="history.includes(question.id)" (ionChange)="onChange($event)" [formControlName]="question.id" required></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'datepicker'">
+    <ion-item>
+      <ion-label>{{ question.question.split("||",3)[2] }}</ion-label>
+      <ion-datetime [disabled]="history.includes(question.id)"
+        min="2020-01-01"
+        displayFormat="D de MMMM de YYYY"
+        pickerFormat="D MMMM YYYY"
+        doneText="Ok" cancelText="Cancelar"
+        placeholder="Selecionar"
+        monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+        monthNames="janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro"
+        [formControlName]="question.id"
+        [max]="maxDate"
+        (ionChange)="onChange($event)"
+        required
+      ></ion-datetime>
+    </ion-item>
+  </ion-list>
+ </div>
